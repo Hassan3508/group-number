@@ -6,6 +6,22 @@ In this challenge, you will be creating a number guessing game! You'll have plen
 
 ### Tech: Node, Express, and JavaScript
 
+_______TO DO______
+__Main requirements__
+ {}Make random # generator 1-25
+ {}Inputs for 3 people and a submit button to all 3 require all 3 inputs to be filled before submission.
+ {}Alert to let clients know if they are high or low or correct
+ {}Log number of guesses and what the values are.
+ {}If someone wins have an event that can start game again
+ {}All random number calculations must be on server side
+
+ __Stretch Goals__
+ {}Random number generator in its own node module
+ {}Disallow 2 users to submit the same number at the same time.
+ {}Add a bot player that guess with the three others and trash talks you if it wins. 
+    {}To get random trash talk we can make an array of quotes and have them also run through by the random number function so it stays freaky fresh every time!
+{}Allow users to set number range - higher or lower
+
 ## Base Mode
 
 You should generate a random number between 1 and 25 on the server. Add input fields to match the number of people in your group. Each member of your group will submit a guess at the same time. All of the guesses should be sent to the server (POST). The server will check each guess against the random number. After submitting a round of guesses, retrieve all of the previous guesses (GET) and display them on the screen. Let each user know whether their guess was correct, too low or too high. 
