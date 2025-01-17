@@ -1,0 +1,25 @@
+/*UPDATE THE STYLE WHEN WEBPAGE IS FUNCTIONING
+/* TABLE */
+table {
+    width: 100%;
+    text-align: left;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    height: 2.15em;
+  }
+  th, td {
+    padding: .5em;
+    min-width: 3.5em;
+  }
+  thead {
+    background: #eab355;
+    color: #070706;
+  }
+  tbody tr:nth-child(odd){ 
+    background: #c2f1ae4f;
+  }
+  tbody tr:nth-child(even){
+    background: #80d3da4b;
+  }
