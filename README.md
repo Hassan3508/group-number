@@ -15,7 +15,8 @@ __Main requirements__
     -if statement
  {x}Log number of guesses and what the values are.
  {}If someone wins have an event that can start game again
- {}All random number calculations must be on server side
+   {}Make a seperate function function for each player
+ {x}All random number calculations must be on server side
 
  __Stretch Goals__
  {}Random number generator in its own node module
