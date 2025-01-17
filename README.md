@@ -9,9 +9,11 @@ In this challenge, you will be creating a number guessing game! You'll have plen
 _______TO DO______
 __Main requirements__
  {}Make random # generator 1-25
- {}Inputs for 3 people and a submit button to all 3 require all 3 inputs to be filled before submission.
+    
+ {x}Inputs for 3 people and a submit button to all 3 require all 3 inputs to be filled before submission.
  {}Alert to let clients know if they are high or low or correct
- {}Log number of guesses and what the values are.
+    -if statement
+ {x}Log number of guesses and what the values are.
  {}If someone wins have an event that can start game again
  {}All random number calculations must be on server side
 

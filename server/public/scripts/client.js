@@ -17,6 +17,7 @@ function formHandler(event) {
   
 addGuess(newPlayer);
   console.log('newPlayer', newPlayer);
+  
 }
 
 
