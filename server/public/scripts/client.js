@@ -1,146 +1,76 @@
 function onReady() {
-  console.log("JavaScript is loaded!")
+  console.log("JavaScript is loaded!");
+  // TODO: Fetch all guesses when page loads
+  fetchGuess();
 
 }
-
 
 function formHandler(event) {
   event.preventDefault();
-  console.log('new guesses', );
+  console.log("new guesses");
   const newPlayer = {
-    answerOne: document.getElementById('Ismail-name').value,
-    answerTwo: document.getElementById('Alex-name').value,
-    answerThree: document.getElementById('Alecia-name').value,
-
+    answerOne: document.getElementById("Ismail-name").value,
+    answerTwo: document.getElementById("Alex-name").value,
+    answerThree: document.getElementById("Alecia-name").value,
   };
-  document.getElementById('form').reset();
-  
-addGuess(newPlayer);
-  console.log('newPlayer', newPlayer);
-randomNumber();
+  document.getElementById("form").reset();
+  addGuess(newPlayer);
 }
-
 
 function addGuess(guess) {
   axios
-    .post('/playerdata', guess)
+    .post("/playerdata", guess)
     .then((response) => {
-      console.log('Guesses submitted');
+      console.log("Guesses submitted");
       fetchGuess();
     })
     .catch((error) => {
-      console.error('whoops! something went wrong with the guess post');
-    });
-    
-}
-
-
-function fetchGuess() {
-  const contentDiv = document.querySelector('#playerTableBody');
-  contentDiv.innerHTML = '';
-  axios({
-    method: 'GET',
-    url: '/playerdata',
-  })
-    .then(function (response) {
-      console.log(response);
-      const playerFromServer = response.data;
-      const contentDiv = document.querySelector('#playerTableBody');
-      for (let player of playerFromServer) {
-        contentDiv.innerHTML += `
-                  <tr>
-                      <td>${player.answerOne}</td>
-                      <td>${player.answerTwo}</td>
-                      <td>${player.answerThree}</td>
-                  </tr>
-              `;
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-      alert('Something bad happened! Check the console for more details.');
+      console.error("whoops! something went wrong with the guess post");
     });
 }
 
 function fetchGuess() {
-  const contentDiv = document.querySelector('#playerTableBody');
-  contentDiv.innerHTML = '';
-  axios({
-    method: 'GET',
-    url: '/playerdata',
-  })
-    .then(function (response) {
-      console.log(response);
-      const playerFromServer = response.data;
-      const contentDiv = document.querySelector('#playerTableBody');
-      for (let player of playerFromServer) {
-        contentDiv.innerHTML += `
-                  <tr>
-                      <td>${player.answerOne}</td>
-                      <td>${player.answerTwo}</td>
-                      <td>${player.answerThree}</td>
-                  </tr>
-              `;
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-      alert('Something bad happened! Check the console for more details.');
-    });
-}
-
-
-// function randomNumber() {
-//   const contentDiv = document.getElementById("random-number");
-//   contentDiv.innerHTML = '';
-//   axios({
-//     method: 'GET',
-//     url: '/playerdata/random',
-//   })
-//     .then(function (response) {
-//       console.log(response);
-//       const dataFromServer = response.data;
-//       const contentDiv = document.getElementById("random-number");
-//       for (let data of dataFromServer) {
-//         contentDiv.innerHTML += `
-//                 <p>${data.randomNumber}</p>
-//               `;
-//       }
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//       alert('Something bad happened! Check the console for more details.');
-//     });
-// }
-
-
-//RANDOM FUNCTION
-function randomNumber() {
+  const contentDiv = document.querySelector("#playerTableBody");
+  contentDiv.innerHTML = "";
   axios({
     method: "GET",
-    url: "/playerdata/random",
-  }).then(function (response) {
-    // response.data is a number object:
-    console.log("SHOW ME THE DATA!!!!", response.data);
-    
-  
+    url: "/playerdata",
+  })
+    .then(function (response) {
+      console.log(response);
+      const playerFromServer = response.data;
+      const contentDiv = document.querySelector("#playerTableBody");
 
+      // TODO: Add the guess results too
+      for (const player of playerFromServer) {
+        contentDiv.innerHTML += `
+        <tr>
+        <td>${player.answerOne} -- ${player.answerOneResult}</td>
+        <td>${player.answerTwo} -- ${player.answerTwoResult} </td>
+        <td>${player.answerThree} -- ${player.answerThreeResult}</td>
+        </tr>
+        `;
+      }
 
-    document.getElementById("random-number").innerHTML = `
-    <p id="random-number">Random number: ${response.data}</p>   
-    `;
-  });
+      // Grab the last turn (last in the turn history array)
+      // Check all three answers - if they are correct, alert a message
+      // showing which player won (and then add a style or something to the page)
+      const mostRecentTurn = response.data[response.data.length-1];
+      if(mostRecentTurn.answerOneResult === 'correct') {
+        // player 1 won
+        alert(`player 1 is the winner!`);
+        // do something with styling here!
+      } else if (mostRecentTurn.answerTwoResult === 'correct'){
+        // player 2 won
+        alert(`player 2 is the winner!`);
+      } else if (mostRecentTurn.answerThreeResult === 'correct') {
+        // player 3 won
+        alert(`player 3 is the winner!`);
+      }
+    }).catch(function (error) {
+      console.log(error);
+      alert("Something bad happened! Check the console for more details.");
+    });
 }
-//CHECK RANDOM
-function checkGuess(target, guess) {
-  if (guess < target) {
-  return "too low!";
-  }else if (guess > target) {
-  return "too high"; 
-  } else {
-  return "correct!";
-  }
-  }
 
 onReady();
-
