@@ -3,12 +3,7 @@ const bodyParser = require('body-parser')
 const app = express();
 const PORT = 5001;
 
-const playerDataArray = [{
-  
-  answerOne: 'Miles Davis',
-  answerTwo: 'Miles Davis',
-  answerThree: 'Street tacos',
-}];
+const playerDataArray = [];
 
 
 // This must be added before GET & POST routes.
