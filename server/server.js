@@ -25,7 +25,7 @@ function processGuess(guess) {
     return "TOO LOW!";
   } else if (guess > randomNumber) {
     // number is too high
-    console.log(`Guess of ${guess} is too high (correct: ${randomNumber})`);
+    console.log(`Guess of ${guess} is too high (correct: ${randomNumber})`); 
     return "TOO HIGH!";
   } else {
     // number is juuuust right (goldilocks referenc)
